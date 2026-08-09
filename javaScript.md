@@ -199,9 +199,166 @@ The typeof operator is used to determine the data type of a value or variable. I
 
 An Immediately Invoked Function Expression, or IIFE, is a function that executes immediately after it is defined. It is created by wrapping the function in parentheses and then adding another pair of parentheses to invoke it. IIFEs are commonly used to create a private scope and prevent variables from polluting the global scope.
 
+## Q23. Explain Type Coercion in JavaScript with examples.
 
-Q16. What is destructuring in JavaScript? Explain with array and object examples.
-Q17. What are the spread and rest operators and how are they used?
+Type coercion is the conversion of a value from one data type to another. In JavaScript, it can happen implicitly, where JavaScript automatically converts the type, or explicitly, where we convert it ourselves using functions like Number(), String(), or Boolean(). For example, '5' + 2 returns '52' because the number is converted to a string, while '5' - 2 returns 3 because the string is converted to a number. The == operator also performs type coercion, while === does not.
+
+Implicit → JavaScript converts it for you.
+Explicit → You convert it yourself.
+
+## Q24. What is destructuring in JavaScript? Explain with array and object examples.
+
+Destructuring is a JavaScript feature that allows us to extract values from arrays or properties from objects and assign them to variables. With arrays, values are extracted based on their position, while with objects, they're extracted based on property names. It makes code cleaner and is commonly used with API responses, function parameters, and React props.
+
+## Q25. Can we swap two variables using destructuring?
+
+Yes:
+
+```
+let a = 10;
+let b = 20;
+[a, b] = [b, a];
+console.log(a); // 20
+console.log(b); // 10
+```
+
+## Q26. What are the spread and rest operators and how are they used?
+
+Both spread and rest use the ... syntax, but they have opposite purposes. The spread operator expands or unpacks elements from an array or properties from an object, and it's commonly used for copying or merging. The rest operator collects multiple values into an array or object, and it's commonly used with function parameters and destructuring.
+
+## Q27. Explain shallow copy and deep copy.
+
+A shallow copy creates a new outer object, but nested objects and arrays can still be shared with the original. A deep copy creates a completely independent copy, including all nested data. For example, the spread operator creates a shallow copy, while structuredClone() can create a deep copy.
+
+```
+# Shallow Copy and Deep Copy
+
+## What is a Shallow Copy?
+
+A **shallow copy** creates a new outer object, but **nested objects or arrays are still shared** with the original object.
+
+```javascript
+const user1 = {
+  name: "Nur",
+  address: {
+    city: "Chattogram"
+  }
+};
+
+const user2 = { ...user1 };
+
+user2.address.city = "Dhaka";
+
+console.log(user1.address.city); // Dhaka
+````
+
+Here, `user1` and `user2` have different outer objects, but their `address` objects are shared.
+
+---
+
+## What is a Deep Copy?
+
+A **deep copy** creates a completely independent copy of an object, including all nested objects and arrays.
+
+```javascript
+const user1 = {
+  name: "Nur",
+  address: {
+    city: "Chattogram",
+  },
+};
+
+const user2 = structuredClone(user1);
+
+user2.address.city = "Dhaka";
+
+console.log(user1.address.city); // Chattogram
+console.log(user2.address.city); // Dhaka
+```
+
+Here, the nested `address` objects are also independent.
+
+---
+
+## What does "Shared" mean?
+
+**Shared** means two variables refer to the **same object in memory**.
+
+```javascript
+const user1 = {
+  name: "Nur",
+};
+
+const user2 = user1;
+
+user2.name = "John";
+
+console.log(user1.name); // John
+```
+
+Both variables point to the same object:
+
+```text
+user1 ──┐
+        ↓
+      Object
+        ↑
+user2 ──┘
+```
+
+So, changing the object through `user2` also affects `user1`.
+
+> **Shared = Same object/reference**
+
+---
+
+## What does "Independent" mean?
+
+**Independent** means two variables refer to **separate objects in memory**.
+
+```javascript
+const user1 = {
+  name: "Nur",
+};
+
+const user2 = structuredClone(user1);
+
+user2.name = "John";
+
+console.log(user1.name); // Nur
+console.log(user2.name); // John
+```
+
+They point to different objects:
+
+```text
+user1 ──→ Object A
+
+user2 ──→ Object B
+```
+
+Changing one does not affect the other.
+
+> **Independent = Separate object/reference**
+
+---
+
+## Quick Comparison
+
+|                     | Shallow Copy | Deep Copy   |
+| ------------------- | ------------ | ----------- |
+| Outer object        | Independent  | Independent |
+| Nested objects      | Shared       | Independent |
+| Nested arrays       | Shared       | Independent |
+| Spread operator     | ✅           | ❌          |
+| `structuredClone()` | ❌           | ✅          |
+
+### Easy Way to Remember
+
+> **Shallow Copy → Outside is independent, inside can be shared.**
+> **Deep Copy → Everything is independent.**
+
+```
 Q18. Explain the difference between map(), filter(), and reduce().
 Q19. What is the difference between for...in and for...of loops?
 Q20. What are template literals and tagged templates?
@@ -214,4 +371,5 @@ Q26. Explain the concept of this keyword in different contexts.
 Q27. What are JavaScript modules (import/export)?
 Q28. What is the difference between shallow copy and deep copy of objects?
 Q29. What are WeakMap and WeakSet and when would you use them?
-Q30. Explain the concept of memoization with an example. 
+Q30. Explain the concept of memoization with an example.
+```
