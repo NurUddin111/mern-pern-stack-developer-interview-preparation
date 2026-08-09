@@ -237,7 +237,6 @@ A shallow copy creates a new outer object, but nested objects and arrays can sti
 
 A **shallow copy** creates a new outer object, but **nested objects or arrays are still shared** with the original object.
 
-```javascript
 const user1 = {
   name: "Nur",
   address: {
@@ -250,7 +249,6 @@ const user2 = { ...user1 };
 user2.address.city = "Dhaka";
 
 console.log(user1.address.city); // Dhaka
-````
 
 Here, `user1` and `user2` have different outer objects, but their `address` objects are shared.
 
@@ -260,7 +258,6 @@ Here, `user1` and `user2` have different outer objects, but their `address` obje
 
 A **deep copy** creates a completely independent copy of an object, including all nested objects and arrays.
 
-```javascript
 const user1 = {
   name: "Nur",
   address: {
@@ -274,7 +271,6 @@ user2.address.city = "Dhaka";
 
 console.log(user1.address.city); // Chattogram
 console.log(user2.address.city); // Dhaka
-```
 
 Here, the nested `address` objects are also independent.
 
@@ -284,7 +280,7 @@ Here, the nested `address` objects are also independent.
 
 **Shared** means two variables refer to the **same object in memory**.
 
-```javascript
+
 const user1 = {
   name: "Nur",
 };
@@ -294,17 +290,15 @@ const user2 = user1;
 user2.name = "John";
 
 console.log(user1.name); // John
-```
+
 
 Both variables point to the same object:
 
-```text
 user1 ──┐
         ↓
       Object
         ↑
 user2 ──┘
-```
 
 So, changing the object through `user2` also affects `user1`.
 
@@ -316,7 +310,7 @@ So, changing the object through `user2` also affects `user1`.
 
 **Independent** means two variables refer to **separate objects in memory**.
 
-```javascript
+
 const user1 = {
   name: "Nur",
 };
@@ -327,15 +321,12 @@ user2.name = "John";
 
 console.log(user1.name); // Nur
 console.log(user2.name); // John
-```
 
 They point to different objects:
 
-```text
 user1 ──→ Object A
 
 user2 ──→ Object B
-```
 
 Changing one does not affect the other.
 
@@ -357,8 +348,8 @@ Changing one does not affect the other.
 
 > **Shallow Copy → Outside is independent, inside can be shared.**
 > **Deep Copy → Everything is independent.**
-
 ```
+
 Q18. Explain the difference between map(), filter(), and reduce().
 Q19. What is the difference between for...in and for...of loops?
 Q20. What are template literals and tagged templates?
