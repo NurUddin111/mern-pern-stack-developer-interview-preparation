@@ -1,6 +1,6 @@
 # REACT QUESTIONS
 
-## 01. What is React?
+## 01. What is React and what problem does it solve?
 
 React is an open-source JavaScript library developed by Facebook for building fast, interactive, and reusable user interfaces, especially for single-page applications. It uses a component-based architecture, which allows developers to build reusable UI components. React also uses a Virtual DOM to efficiently update the user interface, improving performance and providing a better user experience.
 Key Points
@@ -73,9 +73,17 @@ Key Points
 • Improve code organization.
 • Improve maintainability.
 • Two types:
-o Functional Components ✅
+o Functional Components
 o Class Components
 • Functional Components are preferred today because they support Hooks.
+
+## 12. What is the difference between functional and class components?
+
+Functional components are regular JavaScript functions. They return JSX and can use Hooks like useState and useEffect.
+
+Class components are JavaScript classes. They use this.state and lifecycle methods such as componentDidMount and componentWillUnmount to manage state and component behavior.
+
+In modern React, functional components are preferred. They are simpler and easier to maintain.
 
 ## 12. What is the difference between Props and State?
 
@@ -154,7 +162,7 @@ A memory leak happens when an application continues to hold onto memory that is 
 
 Hooks should only be called at the top level of a Functional Component or inside a custom Hook. They should not be called inside loops, conditions, or nested functions.
 
-## 22. What is useState?
+## 22. What is useState hook?
 
 useState is a React Hook that allows functional components to manage state. It lets us store dynamic data inside a component, such as user input, button clicks, or fetched data. When the state changes using its setter function, React automatically re-renders the component to update the user interface.
 
@@ -210,7 +218,7 @@ useState is used when changing a value should update the UI. useRef is used when
 
 ## 34. What is JSX?##
 
-JSX stands for JavaScript XML. It is a syntax extension for JavaScript that allows us to write HTML-like code inside JavaScript. JSX makes React components easier to read and write. Although it looks like HTML, browsers cannot understand JSX directly. It is transpiled into regular JavaScript using tools like Babel before the code runs in the browser.
+JSX stands for JavaScript XML. It is a syntax extension for JavaScript that allows developers to write HTML-like code inside JavaScript. JSX makes React components easier to read and write. Although it looks like HTML, browsers cannot understand JSX directly. It is transpiled into regular JavaScript using tools like Babel before the code runs in the browser.
 
 ## 35. Why do we use className instead of class?
 

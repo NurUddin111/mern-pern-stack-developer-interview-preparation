@@ -350,9 +350,38 @@ Changing one does not affect the other.
 > **Deep Copy → Everything is independent.**
 ```
 
-Q18. Explain the difference between map(), filter(), and reduce().
-Q19. What is the difference between for...in and for...of loops?
-Q20. What are template literals and tagged templates?
+## Q28. Explain the difference between map(), filter(), and reduce().
+
+## Q29. What is the difference between for...in and for...of loops?
+
+for...in and for...of are both used for iteration, but for...in iterates over the keys or property names, while for...of iterates over the actual values of an iterable. For example, with an array, for...in gives the indexes, while for...of gives the elements. I generally use for...in for objects and for...of for arrays and other iterables.
+
+Q: Can we use for...of directly on a normal object?
+No. Normal objects are not iterable by default.
+
+Q: What does for...in return for an array?
+It returns the indexes as strings.
+
+## Q30. what is iteration and iterables?
+
+Iteration means going through a collection of items one by one. An iterable is a value that can be iterated over using for...of, such as arrays, strings, Maps, and Sets. A normal JavaScript object is not iterable by default.
+
+## Q31. What are Map and Set in JavaScript?
+
+Map and Set are built-in JavaScript data structures. A Map stores data as key-value pairs, while a Set stores only unique values. A Map provides methods like set, get, and has, while a Set provides methods like add, has, and delete. A common use of Set is removing duplicates from an array.
+
+Q: Can a Map have duplicate keys?
+No. Each key must be unique. If you add the same key again, its value is updated.
+
+Q: Can a Set contain duplicate values?
+No. Duplicate values are automatically ignored.
+
+Iteration means going through a collection of items one by one. An iterable is a value that can be iterated over using for...of, such as arrays, strings, Maps, and Sets. A normal JavaScript object is not iterable by default.
+
+## Q32. What are template literals and tagged templates?
+
+Template literals are a modern way to create strings using backticks. They allow us to insert variables and expressions using ${} and also support multi-line strings. Tagged templates are an advanced feature where a function is placed before a template literal to process or transform the string and its inserted values.
+
 Q21. What is the event loop in JavaScript?
 Q22. Explain how Promises work in JavaScript.
 Q23. What is async/await and how does it improve upon Promises?
@@ -363,4 +392,7 @@ Q27. What are JavaScript modules (import/export)?
 Q28. What is the difference between shallow copy and deep copy of objects?
 Q29. What are WeakMap and WeakSet and when would you use them?
 Q30. Explain the concept of memoization with an example.
+
+```
+
 ```
