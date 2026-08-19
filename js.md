@@ -14,6 +14,10 @@ Promises solve this problem by representing the eventual result of an asynchrono
 
 ## Q80. What is a Promise? What are its states? How does chaining work? (P1)
 
+A Promise is an object that represents the eventual result of an asynchronous operation. A Promise has three states: pending, fulfilled, and rejected. It starts in the pending state and eventually becomes either fulfilled if the operation succeeds or rejected if it fails. Once a Promise is fulfilled or rejected, its state cannot change again.
+
+Promise chaining allows us to perform multiple asynchronous operations sequentially. We can use .then() to handle the result of a Promise, and each .then() returns a new Promise, which allows us to attach another .then(). If we return another Promise from a .then() callback, the next .then() waits for that Promise and receives its result. We can use .catch() to handle errors in the chain.
+
 ## Q81. What is async/await, and how does it differ from raw Promises internally? (P1)
 
 ## Q82. How do you handle errors with async/await vs. .then()/.catch()? (P1)
