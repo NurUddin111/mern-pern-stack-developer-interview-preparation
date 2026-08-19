@@ -20,9 +20,21 @@ Promise chaining allows us to perform multiple asynchronous operations sequentia
 
 ## Q81. What is async/await, and how does it differ from raw Promises internally? (P1)
 
+Async and await are JavaScript keywords that provide a cleaner way to work with Promises. An async function always returns a Promise, while await pauses the execution of that particular async function until the Promise settles and gives us its fulfilled value.
+
+Async/await does not replace Promises or create a separate asynchronous mechanism. Internally, it is built on top of Promises. The main difference is the syntax and how we write the asynchronous flow. With raw Promises, we use methods such as .then() and .catch() to chain operations and handle errors. With async/await, we can write the same Promise-based operations in a more sequential and readable style, usually using try...catch for error handling.
+
+Also, await does not block the entire JavaScript runtime. It pauses only the current async function while the Promise is pending, allowing other JavaScript work to continue.
+
 ## Q82. How do you handle errors with async/await vs. .then()/.catch()? (P1)
 
+With Promise chaining, I usually handle errors using .catch(). If any Promise in the chain is rejected, the error can propagate down to the .catch() block, where I can handle it. With async/await, I normally use a try...catch block. When an awaited Promise is rejected, the error is caught by the catch block. Both approaches handle Promise rejections, but async/await with try...catch often makes complex asynchronous code easier to read and maintain. Since an async function itself returns a Promise, I can also use .catch() on the async function if needed.
+
 ## Q83. What happens when an async function throws? What happens if you forget to await it? (P2)
+
+An async function always returns a Promise. If an async function returns a value, that value becomes the fulfilled value of the Promise. If the function throws an error, the Promise becomes rejected with that error.
+
+If I forget to use await when calling an async function, I receive the Promise itself instead of its resolved value. Also, if that Promise rejects, a surrounding try...catch will not catch the rejection unless I await the Promise or explicitly handle it with .catch(). Therefore, forgetting await can result in working with a Promise when I expected the actual value, and it can also cause unhandled Promise rejections if I never handle the Promise.
 
 ## Q84. What is Promise.all()? What happens if one Promise inside it rejects? (P1)
 
