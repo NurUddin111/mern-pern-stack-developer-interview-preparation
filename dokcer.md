@@ -79,3 +79,24 @@
 ## Q34. Your Container crashes. Does the Docker Image become unusable? Explain.
 
 ## Q35.Suppose you have Finvia with a Next.js frontend and Node.js backend. Would you put both applications inside one Docker Image or use separate Images? Why?
+
+#Topics - 27.08.26
+1. Environment Replication
+2. Container
+3. Images
+4. Image Pulling command
+5. Container running command, container id, ls, directory,all running container commands, all container commands
+6. dockerHub
+
+#Topic - 28.08.26
+1. use of -it
+2. introducing docker to beginner level project
+3. Dockerfile, Container Tools extension
+4. how to dockerize a node application
+
+#Topic - 29.08.26
+1. Optimize Dockerfile
+2. containers are isolated
+3. port mapping, use of flags like -e and -p
+4. push and pull custom images from DockerHub
+5. glimpse of docker compose
