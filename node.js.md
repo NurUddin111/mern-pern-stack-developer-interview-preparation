@@ -119,3 +119,19 @@ Async and await are JavaScript features used to work with Promises in a cleaner 
 The main benefit is readability. Instead of using multiple .then() calls or nested callbacks, we can write asynchronous operations in a sequential-looking way. We can also use a normal try...catch block to handle errors.
 
 Importantly, await does not block the entire Node.js process. It only pauses the execution of the current async function while the Promise is being settled.
+
+## Q16. How do you use the fs module for FS operations?
+
+The fs module stands for File System, and it is a built-in Node.js module used to work with files and directories. We can use it to read, write, append, rename, and delete files, as well as create and manage directories.
+
+For example, we can use fs.readFile() to read a file asynchronously and handle the result in a callback. The fs module provides both synchronous and asynchronous APIs. In server applications, asynchronous APIs are generally preferred because synchronous operations can block the JavaScript execution.
+
+## Q17. Explain the difference between synchronous and asynchronous file system operations.
+
+The main difference is that synchronous file system operations block the execution until the operation is completed, while asynchronous file system operations allow Node.js to continue executing other code while the operation is in progress.
+
+For example, fs.readFileSync() is synchronous, so the code waits until the file is completely read. On the other hand, fs.readFile() is asynchronous, so Node.js can continue executing other code and handle the file result later through a callback or Promise.
+
+For server applications, asynchronous file operations are generally preferred because they avoid blocking the main JavaScript execution.
+
+## Q18. 
