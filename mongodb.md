@@ -53,3 +53,29 @@ However, indexes also have a cost. They require extra storage and MongoDB needs 
 ## Q10. what is the role of the id field in MongoDB documents?
 
 The \_id field is a unique identifier for a document in MongoDB. It is used to uniquely identify each document inside a collection. If we do not provide an \_id when inserting a document, MongoDB automatically creates an ObjectId for it. MongoDB also automatically creates a unique index on the \_id field.
+
+# 🎯 CRUD Operations
+
+## Q11. How do you create a new MongoDB collection?
+
+We can create a MongoDB collection using the db.createCollection() method. For example, db.createCollection("users") creates a collection called users. However, we do not always need to create a collection manually. If we insert a document into a collection that does not exist, MongoDB can automatically create the collection and insert the document.
+
+## Q12. What is the syntax to insert a document into a MongoDB collection?
+
+We use the insertOne() method to insert a single document into a MongoDB collection. The syntax is db.collectionName.insertOne({ ... }), where we provide the collection name and the document that we want to insert. If we want to insert multiple documents, we can use the insertMany() method.
+
+## Q13. Describe how to read data from a MongoDB collection.
+
+## Q14. Explain how to update Documents in MongoDB.
+
+## Q15. What are the MongoDB commands for deleting documents?
+
+## Q16. Can you join two collections in MongoDB? If so, how?
+
+## Q17. How do you limit the number of documents returned by a MongoDB query?
+
+## Q18. What is the difference between find() and findOne() in MongoDB?
+
+## Q19. How can you achieve pagination in MongoDB?
+
+## Q20. What are the differences between MongoDB’s insertOne and insertMany methods?
