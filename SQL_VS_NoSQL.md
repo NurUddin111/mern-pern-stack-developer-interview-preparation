@@ -28,7 +28,19 @@ So, the main difference is that DBMS is a general concept, while RDBMS is a spec
 
 ## Q04. What are the different types of DBMS?
 
+There are different types of DBMS based on how they organize and store data. The main types are Hierarchical DBMS, Network DBMS, Relational DBMS or RDBMS, Object-Oriented DBMS, and NoSQL DBMS.
+
+An RDBMS stores data in tables and allows relationships between those tables. A NoSQL database can use different data models, such as documents, key-value pairs, wide-columns, or graphs.
+
+For example, MySQL and PostgreSQL are RDBMS databases, while MongoDB is a document-based NoSQL database.
+
 ## Q05. What is a table in DBMS?
+
+A table is a structure in a relational database that stores data in rows and columns.
+
+A column represents a specific type of data, such as a name, email, or age. A row represents one complete record in the table.
+
+A relational database can have multiple tables, and we can create relationships between those tables when needed.
 
 ## Q06. What is data redundancy in a database?
 
