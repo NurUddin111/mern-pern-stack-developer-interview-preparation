@@ -44,7 +44,21 @@ A relational database can have multiple tables, and we can create relationships 
 
 ## Q06. What is data redundancy in a database?
 
+For example, if a user's name and email are stored again and again with every order, the same user information is being duplicated.
+
+This can use extra storage and make updates more difficult. If we update the data in one place but forget another place, it can cause data inconsistency. In relational databases, normalization is commonly used to reduce unnecessary data redundancy.
+
 ## Q07. What is the difference between SQL and NoSQL databases?
+
+The main difference between SQL and NoSQL databases is how they store and organize data.
+
+SQL databases are usually relational databases. They store data in tables with rows and columns, and we can create relationships between different tables. They usually use a structured schema.
+
+NoSQL databases do not use the traditional relational table model. They can store data as documents, key-value pairs, graphs, or wide columns, and they usually provide a more flexible data structure.
+
+PostgreSQL and MySQL are examples of SQL databases, while MongoDB and Redis are examples of NoSQL databases.
+
+The choice between SQL and NoSQL depends on the application's data structure, relationships, consistency requirements, and scaling needs.
 
 ## Q08. Why are NoSQL databases popular today?
 
