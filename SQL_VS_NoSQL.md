@@ -62,4 +62,34 @@ The choice between SQL and NoSQL depends on the application's data structure, re
 
 ## Q08. Why are NoSQL databases popular today?
 
+NoSQL databases are popular because they can provide flexible data structures and can work well for applications that need to scale.
+
+Many NoSQL databases do not require a strict relational schema, so it can be easier to handle data when its structure changes. They can also support horizontal scaling, which is useful for applications with large amounts of data and high traffic.
+
+Because of these features, NoSQL databases can be a good choice for some modern, real-time, and large-scale applications. However, it does not mean that NoSQL is always better than SQL. The choice depends on the requirements of the application.
+
 ## Q09. What are the different types of NoSQL databases?
+
+There are four main types of NoSQL databases: Document, Key-Value, Wide-Column, and Graph databases.
+
+A Document database stores data as documents, such as MongoDB. A Key-Value database stores data as key-value pairs, such as Redis. A Wide-Column database uses a column-based structure and is useful for large-scale distributed data, such as Cassandra. A Graph database stores data as nodes and relationships, such as Neo4j.
+
+The right type depends on the data structure and requirements of the application.
+
+## 🎯 Data Modeling & Normalization
+
+## Q10. What is normalization in databases?
+
+Normalization is the process of organizing data in a relational database to reduce unnecessary data duplication and improve data consistency.
+
+We usually normalize a database by dividing a large table into smaller related tables and creating relationships between them.
+
+This reduces repeated data, makes updates easier, and helps prevent data inconsistency. Common normal forms include 1NF, 2NF, and 3NF.
+
+## Q11. What are the different normal forms?
+
+## Q12. What is denormalization?
+
+## Q13. What is the difference between ACID and BASE properties?
+
+## Q14. What are the ACID properties in DBMS?
