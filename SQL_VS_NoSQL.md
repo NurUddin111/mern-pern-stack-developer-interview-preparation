@@ -93,3 +93,131 @@ This reduces repeated data, makes updates easier, and helps prevent data inconsi
 ## Q13. What is the difference between ACID and BASE properties?
 
 ## Q14. What are the ACID properties in DBMS?
+
+## 🎯 Joins & Relationships
+
+## Q15. What is an Entity-Relationship Diagram (ERD)?
+
+## Q16. What are the different types of SQL joins?
+
+## Q17. What is the difference between a Primary Key, Foreign Key, and Unique Key?
+
+## Q18. What is a schema in DBMS?
+
+## Q19. What are constraints in DBMS?
+
+## 🎯 SQL Query & Optimization
+
+## Q20. What is a subquery in SQL?
+
+A subquery is a SQL query written inside another SQL query.
+
+We usually use a subquery when the result of one query is needed by another query.
+
+For example, if we want to find employees whose salary is higher than the average salary, we can use a subquery to calculate the average salary first. Then the outer query can use that result to find the employees.
+
+## Q21. What is the difference between DELETE, TRUNCATE, and DROP? in SQL?
+
+DELETE removes rows from a table, and we can use a WHERE condition to remove specific rows. The table structure remains.
+
+TRUNCATE removes all rows from a table, but the table structure remains. We cannot use a WHERE condition with TRUNCATE.
+
+DROP removes the entire table from the database, including its data and structure.
+
+In simple terms, DELETE removes rows, TRUNCATE removes all rows, and DROP removes the entire table.
+
+## Q22. What is an index and what are its types?
+
+An index is a data structure that helps a database find data faster.
+
+When a column has an index, the database can usually use the index to find matching data instead of scanning the entire table or collection. This can make read and search queries faster.
+
+Common types include single-column indexes, composite indexes, unique indexes, primary key indexes, and full-text indexes.
+
+However, indexes also have a cost. They use extra storage, and the database needs to maintain them when data is inserted, updated, or deleted.
+
+## Q23. What is the difference between a clustered and a non-clustered index?
+
+The main difference between clustered and non-clustered indexes is how the index is related to the table data.
+
+With a clustered index, the table data is organized according to the index order. Therefore, a table can usually have only one clustered organization.
+
+With a non-clustered index, the index is a separate structure from the table data. It stores indexed values and references to the actual rows. A table can have multiple non-clustered indexes.
+
+However, the exact behavior of clustered and non-clustered indexes can be different depending on the database system.
+
+## Q24. What are query optimization strategies?
+
+Query optimization is the process of improving a SQL query so that the database can return the result faster and use fewer resources.
+
+Common strategies include using proper indexes, selecting only the required columns instead of using SELECT \*, filtering data with WHERE, using efficient joins, and limiting large result sets with pagination or LIMIT.
+
+We can also use EXPLAIN or an execution plan to see how the database executes a query and find performance problems. Good indexing and database design can also improve query performance.
+
+## Q25. What is a transaction and what are its states in DBMS?
+
+A transaction is a logical unit of work that contains one or more related database operations.
+
+All required operations should complete successfully before we commit the transaction. When we commit it, the changes become final. If any operation fails, we can roll back the transaction and undo its changes.
+
+The main transaction states are Active, Partially Committed, Committed, Failed, and Aborted. A transaction is Active while its operations are running. After all operations are completed, it becomes Partially Committed. If the transaction is successfully committed, it becomes Committed. If an error occurs, it becomes Failed, and after rollback, it becomes Aborted.
+
+## Q26. What is a deadlock in DBMS?
+
+A deadlock is a situation where two or more transactions are waiting for each other to release locked resources, so none of them can continue.
+
+For example, Transaction 1 may lock Row A and wait for Row B, while Transaction 2 locks Row B and waits for Row A. Both transactions are waiting for each other, so they cannot continue.
+
+The database can detect the deadlock and usually aborts or rolls back one of the transactions so that the other transaction can continue.
+
+## Q27. What is a database cursor?
+
+A database cursor is a mechanism that allows us to process the rows of a query result one at a time.
+
+A cursor keeps a current position in the result set, and we can use FETCH to move from one row to another. A cursor is usually declared, opened, fetched from, and then closed.
+
+We can use a cursor when each row needs to be processed separately. However, when possible, set-based SQL operations are usually better because processing rows one by one can be slower.
+
+## Q28. What is referential integrity?
+
+Referential integrity is a rule in a relational database that ensures a foreign key always refers to a valid record in another table. Usually, it is maintained using a foreign key constraint. It prevents invalid or non-existing references between related tables and keeps the relationship between the tables consistent.
+
+## Q29. What are the phases of the DBMS query processing cycle?
+
+The DBMS query processing cycle generally has three main phases. First, the query is parsed and validated to check its syntax and meaning. Then, the query optimizer finds an efficient execution plan for the query. Finally, the DBMS executes that plan, accesses the required data, and returns the result to the user.
+
+## Q30. What are the different types of backups in DBMS?
+
+The main types of database backups are Full, Incremental, and Differential backups. A Full backup copies the entire database. An Incremental backup copies only the data that has changed since the last backup. A Differential backup copies all the data that has changed since the last Full backup. Full backups are easier to restore, while Incremental backups usually need less storage and time.
+
+## Q31. What is hash indexing?
+
+Hash indexing is an indexing technique that uses a hash function to map a key to a specific bucket. It is very efficient for exact-match searches because the database can quickly find the required bucket. However, it is generally not suitable for range queries because the data is not stored in sorted order.
+
+## 🎯 MongoDB Fundamentals
+
+## Q32. What is MongoDB?
+
+## Q33. Why is MongoDB considered a NoSQL database?
+
+## Q34. What is the importance of the \_id field in MongoDB documents?
+
+## Q35. What is the difference between embedding and referencing in MongoDB?
+
+## Q36. What are the query and projection operators in MongoDB?
+
+## Q37. What are the pagination techniques in MongoDB?
+
+## Q38. How does indexing affect query performance in MongoDB?
+
+## Q39. What are the MongoDB index types?
+
+## Q40. How can you analyze query performance using explain("executionStats")?
+
+## Q41. How can you optimize MongoDB for high read traffic?
+
+## Q42. How does MongoDB handle security and access control?
+
+## Q43. What are MongoDB transactions?
+
+## Q44. What is the MongoDB Aggregation Framework?
