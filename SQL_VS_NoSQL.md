@@ -318,8 +318,16 @@ We can scale database reads by creating read replicas of the primary database. T
 
 ## Q71. What are database sharding strategies?
 
+Database sharding means dividing a large database into smaller parts called shards and storing them on different servers. Common sharding strategies include range-based, hash-based, and directory-based sharding. Range-based sharding divides data based on value ranges. Hash-based sharding uses a hash function to decide the shard. Directory-based sharding uses a lookup directory to find which shard contains the data.
+
 ## Q72. What is range-based sharding?
+
+Range-based sharding divides data into different shards based on ranges of a shard key. For example, users with IDs from 1 to 1000 can be stored in one shard, and users with IDs from 1001 to 2000 can be stored in another shard. It is useful for range queries, but it can create an unbalanced load if some ranges receive much more traffic.
 
 ## Q73. What is hash-based sharding?
 
+Hash-based sharding uses a hash function on the shard key to decide which shard should store the data. It usually distributes data more evenly across shards and can reduce the chance of one shard becoming overloaded. However, it is not as good for range queries because nearby values can be stored on different shards.
+
 ## Q74. What is directory-based sharding?
+
+Directory-based sharding uses a separate directory or lookup system to keep information about where data is stored. The directory maps a key or data item to a specific shard. When the application needs some data, it first checks the directory and then sends the request to the correct shard. It gives more control over data distribution, but the directory must be maintained and kept available.
