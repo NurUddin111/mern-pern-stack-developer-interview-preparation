@@ -255,3 +255,71 @@ MySQL and PostgreSQL are both relational database systems, but they have some im
 ## Q56. How do MySQL and PostgreSQL handle transactions?
 
 Both MySQL and PostgreSQL support ACID transactions. In MySQL, transaction handling mainly depends on the storage engine, and InnoDB is the main transactional storage engine. InnoDB uses MVCC, locking, and transaction logs. PostgreSQL has an integrated transaction system and uses MVCC, locks, and Write-Ahead Logging for consistency and recovery. In both databases, we can use COMMIT to make a transaction final and ROLLBACK to undo its changes.
+
+## 🎯 Prisma ORM
+
+## Q57. What is Prisma?
+
+Prisma is a modern ORM and database toolkit for Node.js and TypeScript. It makes it easier for an application to work with relational databases. We can use Prisma Client to query the database, Prisma Schema to define our data models, and Prisma Migrate to manage database schema changes. Prisma itself is not a database; it works with databases such as PostgreSQL and MySQL.
+
+## Q58. What are the core components of Prisma?
+
+The three main components of Prisma are Prisma Client, Prisma Schema, and Prisma Migrate. Prisma Client is used to query the database from the application. Prisma Schema is used to define models, fields, and relationships. Prisma Migrate is used to manage and apply changes to the database schema.
+
+## Q59. What is Prisma Schema (schema.prisma)?
+
+Prisma Schema is a file, usually called schema.prisma, where we define the database connection, Prisma Client generator, and our data models. In the models, we can define fields, relationships, and constraints such as primary keys and unique fields. Prisma uses this schema to generate Prisma Client and manage database schema changes through Prisma Migrate.
+
+## Q60. What is Prisma Client?
+
+Prisma Client is a generated, type-safe database client for JavaScript and TypeScript applications. It allows us to interact with the database and perform operations such as creating, reading, updating, and deleting data. Prisma Client is generated based on the models defined in the Prisma Schema, so we can work with the database without writing raw SQL for every operation.
+
+## Q61. What is Prisma Migrate?
+
+Prisma Migrate is a database migration system provided by Prisma. It helps us apply and track changes made to the Prisma Schema in the actual database. For example, if we add a new field or table to our Prisma Schema, Prisma Migrate can create a migration and apply that change to the database.
+
+## Q62. What is Prisma Studio?
+
+Prisma Studio is a visual database management interface provided by Prisma. It allows developers to view and manage database records through a browser interface. It is mainly useful during development and debugging because we can easily inspect and edit the data without writing SQL queries manually.
+
+## Q63. How are schema definitions and relationships created in Prisma?
+
+In Prisma, schema definitions are created using models and fields in the schema.prisma file. Relationships are created using relation fields and foreign keys. For example, if one user can have many posts, the User model can have a posts Post[] field, while the Post model can have an author User relation and an authorId foreign key. The @relation attribute defines which fields are used for the relationship.
+
+## Q64. How does Prisma prevent SQL injection?
+
+Prisma helps prevent SQL injection by using parameterized queries in its normal query APIs. User input is treated as a value instead of being directly added to the SQL query string. This keeps the input separate from the SQL structure. However, when using raw SQL, developers must still use parameterized and safe queries because unsafe string concatenation can still create SQL injection risks.
+
+## Q65. What are Prisma performance best practices?
+
+Some important Prisma performance best practices are selecting only the required fields, avoiding unnecessary database queries, using pagination for large datasets, and adding proper indexes for frequently queried fields. We should also avoid N+1 query problems and keep transactions as short as possible. For slow queries, we can use query logging and database execution plans to find the problem.
+
+## Q66. What are the limitations of Prisma?
+
+Prisma has some limitations. For simple CRUD operations, it is very convenient, but complex or database-specific queries may sometimes require raw SQL. Because Prisma is an ORM, it also adds an abstraction layer between the application and the database, so we may not always have direct access to every database-specific feature. Prisma also does not automatically make our application fast. We still need to use proper indexes, write efficient queries, and optimize the database when necessary.
+
+## 🎯 Database Optimization & Scaling
+
+## Q67. What are the different database scaling strategies?
+
+There are several common strategies for scaling a database. Vertical scaling means increasing the resources of the existing database server, such as CPU, RAM, or storage. Horizontal scaling means adding more database servers and distributing the workload between them. Replication keeps multiple copies of the same data on different servers, which can help with read performance and availability. Sharding divides a large dataset into smaller parts and stores those parts on different servers.
+
+## Q68. What is vertical scaling (scale-up)?
+
+Vertical scaling, also called scale-up, means increasing the resources of an existing database server. For example, we can increase its CPU, RAM, or storage when the database workload grows. We do not add more database servers; instead, we make the current server more powerful. It is usually easier to implement, but it has a limit because a single server can only be upgraded to a certain level.
+
+## Q69. What is horizontal scaling (scale-out)?
+
+Horizontal scaling, also called scale-out, means increasing the capacity of a database system by adding more servers instead of making one server more powerful. The workload can be distributed across multiple servers. Replication, read replicas, and sharding are common approaches used for horizontal scaling. It is useful when we need to support a large amount of data or a high number of requests.
+
+## Q70. How can database reads be scaled using read replicas?
+
+We can scale database reads by creating read replicas of the primary database. The primary database usually handles write operations, and its data is replicated to the read replicas. We can then send read requests to the replicas instead of sending all reads to the primary database. This distributes the read workload and helps the system handle more read traffic.
+
+## Q71. What are database sharding strategies?
+
+## Q72. What is range-based sharding?
+
+## Q73. What is hash-based sharding?
+
+## Q74. What is directory-based sharding?
