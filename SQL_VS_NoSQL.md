@@ -221,3 +221,37 @@ Hash indexing is an indexing technique that uses a hash function to map a key to
 ## Q43. What are MongoDB transactions?
 
 ## Q44. What is the MongoDB Aggregation Framework?
+
+## 🎯 Mongoose ODM
+
+## Q45. What is Mongoose?
+
+## Q46. What are Mongoose schema types and options?
+
+## Q47. How are relationships handled in Mongoose?
+
+## Q48. What is populate() in Mongoose?
+
+## Q49. When should you use embedding vs. referencing in Mongoose?
+
+## Q50. What is Mongoose middleware (hooks)?
+
+## Q51. What is the difference between pre-hooks and post-hooks?
+
+## Q52. What are lean queries in Mongoose?
+
+## Q53. What does .lean() do in Mongoose?
+
+## 🎯 MySQL vs PostgreSQL
+
+## Q54. What are the architectural differences between MySQL and PostgreSQL?
+
+MySQL and PostgreSQL are both relational databases, but their architectures are different. MySQL commonly uses a thread-based server model and has a pluggable storage engine architecture, such as InnoDB. PostgreSQL commonly uses a process-based server model and has a more integrated storage architecture. PostgreSQL is also highly extensible and supports custom data types, functions, and extensions. Both databases use MVCC-based mechanisms to handle concurrent transactions.
+
+## Q55. What are the key differences between MySQL and PostgreSQL?
+
+MySQL and PostgreSQL are both relational database systems, but they have some important differences. MySQL is popular for its simplicity, web applications, and pluggable storage engines such as InnoDB. PostgreSQL provides more advanced SQL features, complex query support, advanced data types, and strong extensibility. MySQL uses MVCC through InnoDB, while PostgreSQL has its own MVCC implementation. The better choice depends on the application's requirements and workload.
+
+## Q56. How do MySQL and PostgreSQL handle transactions?
+
+Both MySQL and PostgreSQL support ACID transactions. In MySQL, transaction handling mainly depends on the storage engine, and InnoDB is the main transactional storage engine. InnoDB uses MVCC, locking, and transaction logs. PostgreSQL has an integrated transaction system and uses MVCC, locks, and Write-Ahead Logging for consistency and recovery. In both databases, we can use COMMIT to make a transaction final and ROLLBACK to undo its changes.
