@@ -81,18 +81,52 @@ The right type depends on the data structure and requirements of the application
 ## Q10. What is normalization in databases?
 
 Normalization is the process of organizing data in a relational database to reduce unnecessary data duplication and improve data consistency.
-
 We usually normalize a database by dividing a large table into smaller related tables and creating relationships between them.
-
 This reduces repeated data, makes updates easier, and helps prevent data inconsistency. Common normal forms include 1NF, 2NF, and 3NF.
 
 ## Q11. What are the different normal forms?
 
+There are several normal forms in database normalization, including 1NF, 2NF, 3NF, and BCNF.
+
+First Normal Form, or 1NF, means that each column should contain atomic values, and each cell should contain a single value.
+
+Second Normal Form, or 2NF, means the table is already in 1NF and there is no partial dependency on a part of a composite key.
+
+Third Normal Form, or 3NF, means the table is already in 2NF and there is no transitive dependency between non-key attributes.
+
+BCNF, or Boyce-Codd Normal Form, is a stricter version of 3NF where every determinant must be a candidate key.
+
+The main purpose of these normal forms is to reduce unnecessary data duplication and prevent insert, update, and delete anomalies.
+
 ## Q12. What is denormalization?
+
+Denormalization is the process of intentionally storing some duplicate or redundant data in a database to improve read performance and simplify queries.
+
+In a normalized database, we reduce duplication and keep related data in separate tables. However, this can sometimes require multiple joins when reading data.
+
+With denormalization, we may store some related data together so that common read queries can be faster or simpler. The trade-off is that it requires more storage and we need to keep the duplicated data consistent when it changes.
 
 ## Q13. What is the difference between ACID and BASE properties?
 
+ACID and BASE are two different approaches to handling consistency and reliability in database systems.
+
+ACID stands for Atomicity, Consistency, Isolation, and Durability. It provides strong guarantees for transactions and helps keep database operations reliable and predictable. For example, in a bank transfer, if one operation fails, the whole transaction can be rolled back.
+
+BASE stands for Basically Available, Soft State, and Eventually Consistent. It is commonly used to describe distributed systems that focus more on availability and scalability. After an update, different replicas may temporarily have different data, but they can become consistent over time.
+
+So, ACID focuses more on strong transaction guarantees, while BASE focuses more on availability, scalability, and eventual consistency in distributed systems.
+
 ## Q14. What are the ACID properties in DBMS?
+
+ACID stands for Atomicity, Consistency, Isolation, and Durability. These are important properties of database transactions.
+
+**Atomicity** means that a transaction is treated as one unit. Either all of its operations succeed, or the transaction is rolled back.
+
+**Consistency** means that a transaction takes the database from one valid state to another valid state while following the defined rules and constraints.
+
+**Isolation** means that concurrent transactions are properly isolated so that their intermediate changes do not cause incorrect results.
+
+**Durability** means that once a transaction is committed, its changes are preserved even if the system crashes or fails.
 
 ## 🎯 Joins & Relationships
 
