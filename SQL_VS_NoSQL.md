@@ -398,16 +398,94 @@ When an asynchronous read replica lags behind the primary, the replica may conta
 
 ## Q90. How can replication lag and read-your-own-writes consistency be handled?
 
+Replication lag can cause a user to read old data from a replica immediately after a write. To handle read-your-own-writes consistency, we can route reads to the primary for some time after a write. We can also choose a replica only after it has caught up with the required update. In some systems, replication positions can be used to check this. If strong consistency is more important, synchronous replication can also be used, but it may increase write latency.
+
 ## 🎯 Deep-Dive Indexing Mechanics
 
 ## Q91. What is a B-Tree?
 
+A B-Tree is a self-balancing tree data structure that stores multiple sorted keys in each node. It is commonly used for database indexes because it can support fast searching, range queries, and sorting. Since the tree remains balanced, its height stays relatively small, so search usually has O(log n) behavior.
+
 ## Q92. What is an LSM-Tree?
+
+LSM-Tree stands for Log-Structured Merge-Tree. It is a data structure commonly used for write-heavy workloads. New data is first stored in an in-memory structure called a Memtable. When the Memtable becomes full, the data is written to disk as a sorted file called an SSTable. Later, multiple SSTables are merged through a process called compaction. This can provide very good write performance, but reads may need to check multiple files.
 
 ## Q93. What is the difference between a B-Tree and an LSM-Tree?
 
+B-Tree and LSM-Tree are both data structures used by database systems to store and access data efficiently. A B-Tree keeps data in a balanced and sorted tree structure, so it usually provides good read and range query performance. An LSM-Tree first stores new writes in memory, then writes them to sorted files on disk and merges those files through compaction. Therefore, LSM-Trees are often better for write-heavy workloads, while B-Trees are commonly useful for read-heavy and mixed workloads.
+
 ## Q94. What is a covering index?
+
+A covering index is an index that contains all the columns needed by a query. Because the index has all the required data, the database can get the result directly from the index without going back to the main table. This can improve query performance by avoiding an additional table lookup. However, large indexes need more storage and can increase the cost of write operations.
 
 ## Q95. What is an index-only scan?
 
+An index-only scan is a query execution method where the database gets all the required data directly from an index without reading the main table. It can improve performance because it avoids an additional table lookup. However, the database optimizer decides whether an index-only scan is the best option for the query.
+
 ## Q96. When can a query be satisfied entirely from an index without accessing the table/heap?
+
+A query can be satisfied entirely from an index when the index contains all the columns needed for filtering and returning the result. The database must also be able to determine that the required rows are visible without reading the main table or heap. When these conditions are met, the database can use an index-only scan.
+
+## 🎯 Connection Management & Caching
+
+## Q97. What is connection pooling?
+
+Connection pooling is a technique where a group of database connections is created in advance and kept in a pool. When the application needs a connection, it takes an available connection from the pool. After the query is finished, the connection is returned to the pool instead of being closed. This reduces the cost of creating new connections and helps the application handle many requests efficiently.
+
+## Q98. Why do databases fail under sudden traffic spikes without connection pooling?
+
+Without connection pooling, a sudden traffic spike can cause many requests to create new database connections at the same time. A database has a limited number of connections, so the connection limit can be reached quickly. New requests may then wait, time out, or fail. Connection pooling keeps a limited number of connections and reuses them, which helps protect the database and handle traffic more efficiently.
+
+## Q99. What are caching strategies?
+
+Caching strategies define how an application stores, reads, and updates data in a cache. Common strategies include cache-aside, read-through, write-through, and write-behind. Caching can make frequently accessed data faster to read and can reduce the load on the database.
+
+## Q100. What is cache-aside (lazy loading)?
+
+In the cache-aside strategy, the application first checks the cache. If the data is found, it returns the data from the cache. If the data is not found, the application reads it from the database, stores it in the cache, and then returns it.
+
+## Q101. What is write-through caching?
+
+In write-through caching, when the application writes or updates data, the data is written to both the cache and the database. This helps keep the cache up to date, but the write operation can have more overhead because both systems need to be updated.
+
+## Q102. What is write-behind caching?
+
+In write-behind caching, data is first written to the cache and then written to the database asynchronously later. This can make write operations faster, but there is a risk of data loss if the cache fails before the data is written to the database.
+
+## Q103. What are cache stampede/thundering herd, cache penetration, and cache breakdown?
+
+A cache stampede, also called a thundering herd, happens when many requests go to the database at the same time after a popular cache entry expires. Cache penetration happens when requests repeatedly ask for data that does not exist in either the cache or the database. Cache breakdown usually refers to a hot cache entry becoming unavailable or expiring, which causes many requests to reach the database. Techniques such as locking, negative caching, TTL jitter, and input validation can help prevent these problems.
+
+## 🎯 Production Node.js & ORM Nuances
+
+## Q104. What is the N+1 query problem?
+
+The N+1 query problem happens when we use one query to get N records and then run another query for each of those records. This results in N+1 database queries. It can increase database load and make the application slower because of many database round trips. We can avoid it by using joins, relation loading, or other efficient query techniques provided by the ORM.
+
+## Q105. How can the N+1 query problem be solved?
+
+We can solve the N+1 query problem by avoiding separate database queries inside a loop. We can use ORM relation loading, SQL joins, or batch queries to fetch related data more efficiently. In Prisma, we can use include to load related data. The main goal is to replace many individual queries with a smaller number of efficient queries.
+
+## Q106. What are database migrations in zero-downtime deployments?
+
+In a zero-downtime deployment, database migrations should be designed so that the application can continue running while the database schema changes. A common approach is to first make a backward-compatible change, such as adding a new column. Then we deploy code that uses the new structure and migrate the existing data. After all application instances use the new structure, we can remove the old structure. This is commonly called the expand-and-contract pattern.
+
+## Q107. What is the expand-and-contract pattern?
+
+The Expand-and-Contract pattern is a safe way to change a database schema during a zero-downtime deployment.
+
+First, we expand the database by adding the new column or structure without removing the old one. Then, we update the application so that it can work with the new structure. We migrate the existing data if needed, and switch the application to the new structure. Finally, when we are sure that the old structure is no longer being used, we contract the database by removing it.
+
+For example, if we want to replace a name column with full_name, we first add full_name, migrate the data, update the application to use full_name, and later remove name.
+
+The main goal is to keep the old and new application versions compatible and avoid downtime during the migration.
+
+## Q108. Why should you avoid renaming or dropping a column in a single migration while older application instances are still running?
+
+We should avoid renaming or dropping a column in a single migration while older application instances are still running because those old instances may still use the old column.
+
+For example, if the old application uses the `name` column and we rename it to `full_name`, the old application will still try to read or write `name`, and its queries may fail.
+
+A safer approach is to first add the new column, deploy compatible application code, migrate the data, and switch all application instances to the new column. After that, we can remove the old column.
+
+This prevents breaking the older application versions and helps us achieve a zero-downtime deployment.
