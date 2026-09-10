@@ -331,3 +331,83 @@ Hash-based sharding uses a hash function on the shard key to decide which shard 
 ## Q74. What is directory-based sharding?
 
 Directory-based sharding uses a separate directory or lookup system to keep information about where data is stored. The directory maps a key or data item to a specific shard. When the application needs some data, it first checks the directory and then sends the request to the correct shard. It gives more control over data distribution, but the directory must be maintained and kept available.
+
+## 🎯 Concurrency & Isolation Levels
+
+## Q75. What are transaction isolation levels?
+
+Transaction isolation levels define how multiple transactions behave when they run at the same time. They control what data one transaction can see from another transaction. The four standard isolation levels are Read Uncommitted, Read Committed, Repeatable Read, and Serializable. Read Uncommitted provides the lowest isolation, while Serializable provides the highest isolation. Higher isolation can prevent more concurrency problems, but it can also reduce performance and concurrency.
+
+## Q76. What is Read Uncommitted?
+
+Read Uncommitted is the lowest standard isolation level. It allows one transaction to read data that another transaction has not committed yet. Because of this, dirty reads can happen. It provides more concurrency, but it gives weaker data protection.
+
+## Q77. What is Read Committed?
+
+Read Committed means that a transaction can only read data that has already been committed by other transactions. Therefore, dirty reads are prevented. However, if another transaction changes and commits the same row, reading that row again can return a different value. So, non-repeatable reads can still happen.
+
+## Q78. What is Repeatable Read?
+
+Repeatable Read means that a transaction can read the same row multiple times and get a consistent result during that transaction. Even if another transaction updates and commits that row, the first transaction can continue to see its consistent version of the data. It prevents non-repeatable reads.
+
+## Q79. What is Serializable isolation?
+
+Serializable is the strongest standard transaction isolation level. It controls concurrent transactions so that their result is equivalent to running them one after another. It provides strong protection against concurrency problems, but it can reduce concurrency and performance because the database needs more coordination between transactions.
+
+## Q80. What are dirty reads, non-repeatable reads, and phantom reads?
+
+Dirty read হলো যখন একটি transaction অন্য transaction-এর uncommitted data পড়ে। Non-repeatable read হলো যখন একই transaction-এর মধ্যে একই row দুইবার পড়ে ভিন্ন value পাওয়া যায়। Phantom read হলো যখন একই transaction-এর মধ্যে একই condition দিয়ে query করলে নতুন matching rows দেখা যায়। এই সমস্যাগুলো control করার জন্য transaction isolation levels ব্যবহার করা হয়।
+
+## Q81. What is optimistic locking?
+
+Optimistic locking is a concurrency control technique where we do not lock the data when we read it. Instead, we keep a version number or timestamp with the data. When we update the data, we check whether the version is still the same. If another transaction has already changed the data, the update fails and we handle it as a conflict. It is useful when conflicts are not very common.
+
+## Q82. What is pessimistic locking?
+
+Pessimistic locking is a concurrency control technique where we assume that conflicts may happen between transactions. So, we lock the data before modifying it. If another transaction tries to modify the same locked data, it usually has to wait until the lock is released. It is useful when conflicts are expected to happen often.
+
+## Q83. What is the difference between optimistic and pessimistic locking?
+
+The main difference is how they handle conflicts. With optimistic locking, we usually do not lock the data when we read it. Instead, we use a version number or timestamp and check for changes when we update the data. With pessimistic locking, we lock the data before modifying it, so another transaction usually has to wait if it wants to modify the same data. Optimistic locking is useful when conflicts are rare, while pessimistic locking is useful when conflicts are more common.
+
+## 🎯 Distributed Systems & Data Architecture
+
+## Q84. What is the CAP theorem?
+
+The CAP theorem is a principle about distributed systems. It says that during a network partition, a distributed system cannot guarantee strong consistency and availability at the same time while also providing partition tolerance. When a partition happens, the system usually has to choose between consistency and availability. This is why we often talk about CP and AP systems.
+
+## Q85. What are Consistency, Availability, and Partition Tolerance?
+
+Consistency means that after a successful write, the system provides a consistent and up-to-date result for later reads. Availability means that the system continues to respond to requests even when some nodes have problems. Partition tolerance means that the system can continue to operate when communication between some nodes is lost because of a network partition. When a partition happens, a distributed system generally has to choose between strong consistency and availability.
+
+## Q86. What is the difference between CP and AP systems?
+
+CP and AP are two approaches in the CAP theorem. A CP system prioritizes consistency when a network partition happens. If the system cannot guarantee consistent data, it may reject or delay some requests. An AP system prioritizes availability, so it continues to respond to requests during a network partition, even if the returned data may be temporarily stale.
+
+## Q87. What is the PACELC theorem?
+
+PACELC is an extension of the CAP theorem. It says that when a network partition happens, a distributed system has to make a trade-off between consistency and availability. Else, when there is no partition, the system still has to make a trade-off between latency and consistency. So, PACELC explains trade-offs both during a partition and during normal operation.
+
+## Q88. How does PACELC extend the CAP theorem?
+
+PACELC is an extension of the CAP theorem. CAP says that when a network partition happens, a distributed system has to make a trade-off between consistency and availability. PACELC adds that when there is no partition, the system may still have to make a trade-off between latency and consistency. So, PACELC explains trade-offs both during a network partition and during normal operation.
+
+## Q89. What happens when an asynchronous read replica lags behind the primary node?
+
+When an asynchronous read replica lags behind the primary, the replica may contain older data than the primary. This is called replication lag. If the application reads from the replica during this time, it may return stale data. The replica usually catches up when the pending changes are replicated from the primary. Therefore, reads that require the latest data may need to be sent to the primary.
+
+## Q90. How can replication lag and read-your-own-writes consistency be handled?
+
+## 🎯 Deep-Dive Indexing Mechanics
+
+## Q91. What is a B-Tree?
+
+## Q92. What is an LSM-Tree?
+
+## Q93. What is the difference between a B-Tree and an LSM-Tree?
+
+## Q94. What is a covering index?
+
+## Q95. What is an index-only scan?
+
+## Q96. When can a query be satisfied entirely from an index without accessing the table/heap?
